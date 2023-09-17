@@ -55,13 +55,75 @@ const cards = [
 
 const deck = [];
 
+// make each card have 1 of each suits eg. Hearts of Two, Clubs of Two, Diamonds of Two, Spades of Two.
+// pushed into deck array
 for (const suit of suits) {
   for (const key of cards) {
     deck.push({ suit: suit, cards: key });
   }
 }
 
+// get a random suit + card from the deck
 const dealCards = () => {
-  const randCards = deck[Math.floor(Math.random() * deck.length)];
+  const randCards = Math.floor(Math.random() * deck.length);
   return deck.splice(randCards, 1)[0];
 };
+
+// give values for each card
+const cardPoints = (card) => {
+  switch (card.cards) {
+    case "Nine":
+      return 9;
+    case "Eight":
+      return 8;
+    case "Seven":
+      return 7;
+    case "Six":
+      return 6;
+    case "Five":
+      return 5;
+    case "Four":
+      return 4;
+    case "Three":
+      return 3;
+    case "Two":
+      return 2;
+    case "Ace":
+      return 1;
+    default:
+      return 10;
+  }
+};
+
+// parameter: playerHand & dealerHand
+const calculatePoints = (cardArray) => {
+  let points = 0;
+  let hasAce = false;
+
+  // puts player & computer's hand into cardPoints for calculation
+  for (let i = 0; i < cardArray.length; i++) {
+    let cards = cardArray[i];
+    points += cardPoints(cards);
+    if (cards.cards === "Ace") {
+      hasAce = true;
+    }
+  }
+
+  // if total points with ace (1) <= 21, ace is changed to 11.
+  if (hasAce === true && points + 10 <= 21) {
+    return points + 10;
+  }
+  return points;
+};
+
+const startGame = () => {
+  const playerHand = [dealCards(), dealCards()];
+  const computerHand = [dealCards(), dealCards()];
+
+  console.log("Player hand:", playerHand);
+  console.log("Computer hand:", computerHand);
+  console.log("Player points:", calculatePoints(playerHand));
+  console.log("Computer points:", calculatePoints(computerHand));
+};
+
+startGame();

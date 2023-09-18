@@ -121,8 +121,8 @@ const startGame = () => {
   let playerHand = [dealCards(), dealCards()];
   let computerHand = [dealCards(), dealCards()];
 
-  let playerPoints = calculatePoints(playerHand)
-  let computerPoints = calculatePoints(computerHand)
+  let playerPoints = calculatePoints(playerHand);
+  let computerPoints = calculatePoints(computerHand);
 
   console.log("Player hand:", playerHand);
   console.log("Computer hand:", computerHand);
@@ -131,39 +131,42 @@ const startGame = () => {
 
   while (playerPoints < 21 && computerPoints < 21) {
     if (playerPoints < 21) {
-      playerHand.push(dealCards())
-      playerPoints = calculatePoints(playerHand)
+      playerHand.push(dealCards());
+      playerPoints = calculatePoints(playerHand);
 
       if (playerPoints > 21) {
-        console.log("Player hand:", playerHand)
-        console.log("Computer hand:", computerHand)
-        console.log("Computer wins with", computerPoints, "to", playerPoints)
-
-        break
-      } else if (playerPoints === 21) {
-        console.log("Player hand:", playerHand)
-        console.log("Computer hand:", computerHand)
-        console.log("Player wins with", playerPoints, "to", computerPoints)
+        console.log("Player hand:", playerHand);
+        console.log("Computer hand:", computerHand);
+        console.log("Computer wins with", computerPoints, "to", playerPoints);
         break;
+
+      } else if (playerPoints === 21) {
+        console.log("Player hand:", playerHand);
+        console.log("Computer hand:", computerHand);
+        console.log("Player wins with", playerPoints, "to", computerPoints);
+        break;
+
       }
     }
     if (computerPoints < 21) {
-      computerHand.push(dealCards())
-      computerPoints = calculatePoints(computerHand)
+      computerHand.push(dealCards());
+      computerPoints = calculatePoints(computerHand);
 
       if (computerPoints > 21 || computerPoints === 21) {
-        console.log("Player hand:", playerHand)
-        console.log("Computer hand:", computerHand)
-        console.log("Player wins with", playerPoints, "to", computerPoints)
+        console.log("Player hand:", playerHand);
+        console.log("Computer hand:", computerHand);
+        console.log("Player wins with", playerPoints, "to", computerPoints);
         break;
+
       } else {
-        console.log("Player hand:", playerHand)
-        console.log("Computer hand:", computerHand)
-        console.log("Player wins with", playerPoints, "to", computerPoints)
+        console.log("Player hand:", playerHand);
+        console.log("Computer hand:", computerHand);
+        console.log("Player wins with", playerPoints, "to", computerPoints);
         break;
+
       }
     }
   }
-}
+};
 
 startGame();

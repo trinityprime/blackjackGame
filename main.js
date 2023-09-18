@@ -116,14 +116,54 @@ const calculatePoints = (cardArray) => {
   return points;
 };
 
+// initialise game
 const startGame = () => {
-  const playerHand = [dealCards(), dealCards()];
-  const computerHand = [dealCards(), dealCards()];
+  let playerHand = [dealCards(), dealCards()];
+  let computerHand = [dealCards(), dealCards()];
+
+  let playerPoints = calculatePoints(playerHand)
+  let computerPoints = calculatePoints(computerHand)
 
   console.log("Player hand:", playerHand);
   console.log("Computer hand:", computerHand);
-  console.log("Player points:", calculatePoints(playerHand));
-  console.log("Computer points:", calculatePoints(computerHand));
-};
+  console.log("Player points:", playerPoints);
+  console.log("Computer points:", computerPoints);
+
+  while (playerPoints < 21 && computerPoints < 21) {
+    if (playerPoints < 21) {
+      playerHand.push(dealCards())
+      playerPoints = calculatePoints(playerHand)
+
+      if (playerPoints > 21) {
+        console.log("Player hand:", playerHand)
+        console.log("Computer hand:", computerHand)
+        console.log("Computer wins with", computerPoints, "to", playerPoints)
+
+        break
+      } else if (playerPoints === 21) {
+        console.log("Player hand:", playerHand)
+        console.log("Computer hand:", computerHand)
+        console.log("Player wins with", playerPoints, "to", computerPoints)
+        break;
+      }
+    }
+    if (computerPoints < 21) {
+      computerHand.push(dealCards())
+      computerPoints = calculatePoints(computerHand)
+
+      if (computerPoints > 21 || computerPoints === 21) {
+        console.log("Player hand:", playerHand)
+        console.log("Computer hand:", computerHand)
+        console.log("Player wins with", playerPoints, "to", computerPoints)
+        break;
+      } else {
+        console.log("Player hand:", playerHand)
+        console.log("Computer hand:", computerHand)
+        console.log("Player wins with", playerPoints, "to", computerPoints)
+        break;
+      }
+    }
+  }
+}
 
 startGame();

@@ -1,3 +1,2 @@
 # blackjackGame
-run main.js
-fried my brain
+run main.js. this project fried my brain
